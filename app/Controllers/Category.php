@@ -17,7 +17,7 @@ class Category extends Controller
     {
         return view('category/create');
     }
- 
+
     public function store()
     {
         $validation =  \Config\Services::validation();
@@ -43,13 +43,12 @@ class Category extends Controller
     }
  
     public function edit($id)
-    {
-        
+    {  
         $model = new Category_model();
         $data['category'] = $model->getCategory($id)->getRowArray();
         echo view('category/edit', $data);
     }
- 
+
     public function update()
     {
         $id = $this->request->getPost('category_id');

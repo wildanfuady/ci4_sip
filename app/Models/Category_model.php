@@ -11,7 +11,7 @@ class Category_model extends Model
             return $this->findAll();
         } else {
             return $this->getWhere(['category_id' => $id]);
-        }   
+        }  
     }
  
     public function insertCategory($data)
