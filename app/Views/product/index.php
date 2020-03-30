@@ -90,7 +90,7 @@
                                     <tbody>
                                         <?php foreach($products as $key => $row){ ?>
                                         <tr>
-                                            <td class="text-center"><?php echo ++$nomor; ?></td>
+                                            <td class="text-center"><?php echo $key + 1; ?></td>
                                             <td><img src="<?php echo base_url('uploads/'.$row['product_image']) ?>" class="rounded-circle" width="50" height="50"></td>
                                             <td><?php echo $row['product_sku']; ?></td>
                                             <td><?php echo $row['product_name']; ?></td>
@@ -128,21 +128,4 @@
         </div>
     </div>
 </div>
-<script>
-$(document).ready(function(){
-    $("#category").change(function(){
-        filter();
-    });
-    $("#keyword").keypress(function(event){
-        if(event.keyCode == 13){ // 13 adalah kode enter
-            filter();
-        }
-    });
-    var filter = function(){
-        var category = $("#category").val();
-        var keyword = $("#keyword").val();
-        window.location.replace("<?php echo base_url('product'); ?>?category="+category+"&keyword="+keyword);
-    }
-});
-</script>
 <?php echo view('_partials/footer'); ?>

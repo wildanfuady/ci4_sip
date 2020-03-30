@@ -12,8 +12,9 @@
     <strong>Copyright &copy; 2014-2019 <a href="<?php echo base_url('/'); ?>">SIP Online</a>.</strong> All rights reserved.
 </footer>
 </div>
-
+<script src="<?php echo base_url('themes/plugins'); ?>/jquery/jquery.min.js"></script>
 <script src="<?php echo base_url('themes/plugins'); ?>/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?php echo base_url('themes/dist'); ?>/js/adminlte.min.js"></script>
+<script src="<?php echo base_url('themes/dist'); ?>/js/filter.js"></script>
 </body>
 </html>

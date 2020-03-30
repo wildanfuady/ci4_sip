@@ -7,8 +7,6 @@ use App\Models\Category_model;
 class Product extends Controller
 {
     protected $helpers = [];
-    protected $CategoryModel;
-    protected $ProductModel;
 
     public function __construct()
     {
@@ -28,34 +26,25 @@ class Product extends Controller
         $categories         = $this->category_model->where('category_status', 'Active')->findAll();
         $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
 
-        $where = [];
-        $or_where = [];
+        // filter
+        $where      = [];
+        $like       = [];
+        $or_like    = [];
+
         if(!empty($category)){
             $where = ['products.category_id' => $category];
         }
+
         if(!empty($keyword)){
-            $where      = ['products.product_name', $keyword];
-            $or_where   = ['products.product_sku', "%{$keyword}%"];
-            $or_where   = ['products.product_description', "%{$keyword}%"];
+            $like   = ['products.product_name' => $keyword];
+            $or_like   = ['products.product_sku' => $keyword, 'products.product_description' => $keyword];
         }
+        // end filter
 
         // paginate
         $paginate = 5;
-        $data['products']   = $this->product_model->join('categories', 'categories.category_id = products.category_id')->where($where)->like($or_where)->paginate($paginate, 'product');
+        $data['products']   = $this->product_model->join('categories', 'categories.category_id = products.category_id')->where($where)->like($like)->orLike($or_like)->paginate($paginate, 'product');
         $data['pager']      = $this->product_model->pager;
-
-        // generate number untuk tetap bertambah meskipun pindah halaman paginate
-        $nomor = $this->request->getGet('page_product');
-        // define $nomor = 1 jika tidak ada get page_product
-        if($nomor == null){
-            $nomor = 1;
-        }
-        $data['nomor'] = ($nomor - 1) * $paginate;
-        // end generate number
-
-        
-
-        
 
         echo view('product/index', $data);
     }
