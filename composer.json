@@ -7,11 +7,11 @@
     "require": {
         "php": ">=7.2",
         "ext-curl": "*",
-        "ext-intl": "*",
         "ext-json": "*",
         "kint-php/kint": "^3.3",
         "psr/log": "^1.1",
-        "laminas/laminas-escaper": "^2.6"
+        "laminas/laminas-escaper": "^2.6",
+        "phpoffice/phpspreadsheet": "^1.9"
     },
     "require-dev": {
         "codeigniter4/codeigniter4-standard": "^1.0",

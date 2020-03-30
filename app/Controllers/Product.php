@@ -46,6 +46,15 @@ class Product extends Controller
         $data['products']   = $this->product_model->join('categories', 'categories.category_id = products.category_id')->where($where)->like($like)->orLike($or_like)->paginate($paginate, 'product');
         $data['pager']      = $this->product_model->pager;
 
+        // generate number untuk tetap bertambah meskipun pindah halaman paginate
+        $nomor = $this->request->getGet('page_product');
+        // define $nomor = 1 jika tidak ada get page_product
+        if($nomor == null){
+            $nomor = 1;
+        }
+        $data['nomor'] = ($nomor - 1) * $paginate;
+        // end generate number
+
         echo view('product/index', $data);
     }
  

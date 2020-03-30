@@ -90,7 +90,7 @@
                                     <tbody>
                                         <?php foreach($products as $key => $row){ ?>
                                         <tr>
-                                            <td class="text-center"><?php echo $key + 1; ?></td>
+                                            <td class="text-center"><?php echo ++$nomor; ?></td>
                                             <td><img src="<?php echo base_url('uploads/'.$row['product_image']) ?>" class="rounded-circle" width="50" height="50"></td>
                                             <td><?php echo $row['product_sku']; ?></td>
                                             <td><?php echo $row['product_name']; ?></td>
