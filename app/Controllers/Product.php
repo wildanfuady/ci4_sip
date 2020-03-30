@@ -19,8 +19,44 @@ class Product extends Controller
 
     public function index()
     {
-        $paginate = 2;
-        $data['products'] = $this->product_model->getProduct();
+        $category           = $this->request->getGet('category');
+        $keyword            = $this->request->getGet('keyword');
+
+        $data['category']   = $category;
+        $data['keyword']    = $keyword;
+
+        $categories         = $this->category_model->where('category_status', 'Active')->findAll();
+        $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
+
+        $where = [];
+        $or_where = [];
+        if(!empty($category)){
+            $where = ['products.category_id' => $category];
+        }
+        if(!empty($keyword)){
+            $where      = ['products.product_name', $keyword];
+            $or_where   = ['products.product_sku', "%{$keyword}%"];
+            $or_where   = ['products.product_description', "%{$keyword}%"];
+        }
+
+        // paginate
+        $paginate = 5;
+        $data['products']   = $this->product_model->join('categories', 'categories.category_id = products.category_id')->where($where)->like($or_where)->paginate($paginate, 'product');
+        $data['pager']      = $this->product_model->pager;
+
+        // generate number untuk tetap bertambah meskipun pindah halaman paginate
+        $nomor = $this->request->getGet('page_product');
+        // define $nomor = 1 jika tidak ada get page_product
+        if($nomor == null){
+            $nomor = 1;
+        }
+        $data['nomor'] = ($nomor - 1) * $paginate;
+        // end generate number
+
+        
+
+        
+
         echo view('product/index', $data);
     }
  
@@ -72,7 +108,7 @@ class Product extends Controller
         $data['product'] = $this->product_model->getProduct($id);
         echo view('product/show', $data);
     }
-
+    
     public function edit($id)
     {  
         $categories = $this->category_model->where('category_status', 'Active')->findAll();

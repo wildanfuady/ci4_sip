@@ -47,7 +47,32 @@
                                 <?php echo session()->getFlashdata('warning');?>
                             </div>
                             <?php } ?>
-
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <?php 
+                                        echo form_label('Category');
+                                        echo form_dropdown('category', $categories, $category, ['class' => 'form-control', 'id' => 'category']); 
+                                    ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <?php 
+                                        echo form_label('Search');
+                                        $form_keyword = [
+                                            'type'  => 'text',
+                                            'name'  => 'keyword',
+                                            'id'    => 'keyword',
+                                            'value' => $keyword,
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter keyword ...'
+                                        ];
+                                        echo form_input($form_keyword);
+                                    ?>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hovered">
                                     <thead>
@@ -65,7 +90,7 @@
                                     <tbody>
                                         <?php foreach($products as $key => $row){ ?>
                                         <tr>
-                                            <td class="text-center"><?php echo $key+1; ?></td>
+                                            <td class="text-center"><?php echo ++$nomor; ?></td>
                                             <td><img src="<?php echo base_url('uploads/'.$row['product_image']) ?>" class="rounded-circle" width="50" height="50"></td>
                                             <td><?php echo $row['product_sku']; ?></td>
                                             <td><?php echo $row['product_name']; ?></td>
@@ -90,6 +115,11 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="row mt-3 float-right">
+                                <div class="col-md-12">
+                                    <?php echo $pager->links('product', 'bootstrap_pagination') ?> 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -98,4 +128,21 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+    $("#category").change(function(){
+        filter();
+    });
+    $("#keyword").keypress(function(event){
+        if(event.keyCode == 13){ // 13 adalah kode enter
+            filter();
+        }
+    });
+    var filter = function(){
+        var category = $("#category").val();
+        var keyword = $("#keyword").val();
+        window.location.replace("<?php echo base_url('product'); ?>?category="+category+"&keyword="+keyword);
+    }
+});
+</script>
 <?php echo view('_partials/footer'); ?>

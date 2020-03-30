@@ -7,7 +7,6 @@
     "require": {
         "php": ">=7.2",
         "ext-curl": "*",
-        "ext-intl": "*",
         "ext-json": "*",
         "kint-php/kint": "^3.3",
         "psr/log": "^1.1",
