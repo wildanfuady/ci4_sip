@@ -5,21 +5,25 @@ class Dashboard_model extends Model
 {
     protected $table = 'transactions';
 
+    // hitung total data pada transaction
     public function getCountTrx()
     {
         return $this->db->table("transactions")->countAll();
     }
 
+    // hitung total data pada category
     public function getCountCategory()
     {
         return $this->db->table("categories")->countAll();
     }
 
+    // hitung total data pada product
     public function getCountProduct()
     {
         return $this->db->table("products")->countAll();
     }
 
+    // hitung total data pada user
     public function getCountUser()
     {
         return $this->db->table("users")->countAll();

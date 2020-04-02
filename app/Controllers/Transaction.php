@@ -1,5 +1,5 @@
 <?php namespace App\Controllers;
- 
+
 use CodeIgniter\Controller;
 use App\Models\Product_model;
 use App\Models\Transaction_model;

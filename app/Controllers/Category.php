@@ -1,10 +1,23 @@
 <?php namespace App\Controllers;
- 
+
 use CodeIgniter\Controller;
 use App\Models\Category_model;
  
 class Category extends Controller
 {
+
+    public function __construct()
+    {
+		$this->cek_login();
+	}
+
+    public function cek_login()
+	{
+		if(session()->get('level') != "Admin" && session()->get('status') != "Active"){
+			session()->setFlashdata('errors', ['' => 'Silahkan login terlebih dahulu untuk mengakses data.']);
+			return redirect()->to('/auth/login');
+		}
+	}
 
     public function index()
     {

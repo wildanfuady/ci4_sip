@@ -50,7 +50,7 @@
                                 <?php echo session()->getFlashdata('warning');?>
                             </div>
                             <?php } ?>
-
+                            <?php echo session()->get('level'); ?>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hovered">
                                     <thead>

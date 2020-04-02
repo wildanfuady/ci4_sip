@@ -31,6 +31,16 @@ class BaseController extends Controller
 	/**
 	 * Constructor.
 	 */
+
+	public function cek_login()
+	{
+		$result = true;
+		if(session()->get('level') != "Admin" && session()->get('status') != "Active"){
+			$result = false;
+		}
+		return $result;
+	}
+
 	public function initController(\CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger)
 	{
 		// Do Not Edit This Line
