@@ -20,7 +20,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://localhost/codeigniter_project/ci4_sip';
+	public $baseURL = 'http://localhost:8080/';
 
 	/*
 	|--------------------------------------------------------------------------
