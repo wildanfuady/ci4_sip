@@ -16,7 +16,7 @@ class Auth extends BaseController
     public function index()
     {
         if($this->cek_login() == TRUE){
-			return redirect()->to('/dashboard');
+			return redirect()->to(base_url('/dashboard'));
 		}
         echo view('auth/login');
     }
@@ -24,7 +24,7 @@ class Auth extends BaseController
     public function login()
     {
         if($this->cek_login() == TRUE){
-			return redirect()->to('/dashboard');
+			return redirect()->to(base_url('/dashboard'));
 		}
         echo view('auth/login');
     }
@@ -43,7 +43,7 @@ class Auth extends BaseController
 
         if($validation->run($data, 'authlogin') == FALSE){
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to('/auth/login');
+            return redirect()->to(base_url('/auth/login'));
         } else {
 
             $cek_login = $this->auth_model->cek_login($email);
@@ -59,16 +59,16 @@ class Auth extends BaseController
                     session()->set('level', $cek_login['level']);
                     session()->set('status', $cek_login['status']);
                     
-                    return redirect()->to('/dashboard');          
+                    return redirect()->to(base_url('dashboard'));          
                 // email cocok, tapi password salah
                 } else {
                     session()->setFlashdata('errors', ['' => 'Password yang Anda masukan salah']);
-                    return redirect()->to('/auth/login');
+                    return redirect()->to(base_url('/auth/login'));
                 }
             } else {
                 // email tidak cocok / tidak terdaftar
                 session()->setFlashdata('errors', ['' => 'Email yang Anda masukan tidak terdaftar']);
-                return redirect()->to('/auth/login');
+                return redirect()->to(base_url('auth/login'));
             }
         }
     }
@@ -76,7 +76,7 @@ class Auth extends BaseController
     public function register()
     {
         if($this->cek_login() == TRUE){
-			return redirect()->to('/dashboard');
+			return redirect()->to(base_url('dashboard'));
 		}
         return view('auth/register');
     }
@@ -96,7 +96,7 @@ class Auth extends BaseController
         if($validation->run($data, 'authregister') == FALSE){
             session()->setFlashdata('errors', $validation->getErrors());
             session()->setFlashdata('inputs', $this->request->getPost());
-            return redirect()->to('/auth/register');
+            return redirect()->to(base_url('auth/register'));
         } else {
 
             $datalagi = [
@@ -112,7 +112,7 @@ class Auth extends BaseController
 
             if($simpan){
                 session()->setFlashdata('success_register', 'Register Successfully');
-                return redirect()->to('/auth/login');
+                return redirect()->to(base_url('auth/login'));
             }
 
         }
@@ -122,6 +122,6 @@ class Auth extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/auth/login');
+        return redirect()->to(base_url('auth/login'));
     }
 }
