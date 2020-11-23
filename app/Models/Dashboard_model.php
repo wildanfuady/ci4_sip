@@ -32,12 +32,14 @@ class Dashboard_model extends Model
     public function getGrafik()
     {
         $query = $this->db->query("SELECT trx_price, MONTHNAME(trx_date) as month, COUNT(product_id) as total FROM transactions GROUP BY MONTHNAME(trx_date) ORDER BY MONTH(trx_date)");
+        $hasil = [];
         if(!empty($query)){
             foreach($query->getResultArray() as $data) {
                 $hasil[] = $data;
             }
             return $hasil;
         }
+        return $hasil;
     }
 
     public function getLatestTrx()
