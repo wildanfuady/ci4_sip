@@ -3,6 +3,7 @@
 *.log
 
 // Archives
+*.zip
 
 // Sass Cache
 .sass-cache
