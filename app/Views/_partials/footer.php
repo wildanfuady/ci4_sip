@@ -1,10 +1,13 @@
 <?php 
 if(isset($grafik)){
-foreach($grafik as $data){
-    $total[] = $data['total'];
-    $month[] = $data['month'];
+  if(count($grafik) > 0){
+    foreach($grafik as $data){
+        $total[] = $data['total'];
+        $month[] = $data['month'];
+    }
+  }
 }
-}
+
 ?>
 <aside class="control-sidebar control-sidebar-dark">
     <div class="p-3">
@@ -24,18 +27,27 @@ foreach($grafik as $data){
 <script src="<?php echo base_url('themes/plugins'); ?>/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?php echo base_url('themes/dist'); ?>/js/adminlte.min.js"></script>
 <script src="<?php echo base_url('themes/dist'); ?>/js/filter.js"></script>
-<?php if(isset($grafik)){?>
+<?php 
+$bulan = "";
+$totals = 0;
+
+if(isset($grafik)){
+  if(count($grafik) > 0){
+    $bulan = json_encode($month);
+    $totals = json_encode($total);
+  }
+?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script>
 var chart = document.getElementById("myChart").getContext('2d');
 var areaChart = new Chart(chart, {
   type: 'bar',
   data: {
-    labels: <?php echo json_encode($month); ?>,
+    labels: <?php echo $bulan; ?>,
     datasets: [
       {
         label: "Grafik Penjualan",
-        data: <?php echo json_encode($total); ?>,
+        data: <?php echo $totals; ?>,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 253, 0.2)',

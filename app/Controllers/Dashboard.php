@@ -23,7 +23,8 @@ class Dashboard extends BaseController
 		$data['latest_trx']			= $this->dashboard_model->getLatestTrx();
 
 		$chart['grafik']			= $this->dashboard_model->getGrafik();
-
+		$data['get_grafik']			= count($chart['grafik']);
+		// dd(count($this->dashboard_model->getGrafik()));
 		echo view('dashboard', $data);
 		echo view('_partials/footer', $chart);
     }

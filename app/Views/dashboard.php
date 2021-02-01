@@ -81,7 +81,12 @@
                             <h5 class="m-0">Sales Graph</h5>
                         </div>
                         <div class="card-body">
-                            <canvas id="myChart" width="100%" height="45"></canvas>
+                            <?php if($get_grafik > 0){ ?>
+                                <canvas id="myChart" width="100%" height="45"></canvas>
+                            <?php } else { ?>
+                            Belum ada transaksi.
+                            <?php 
+                            } ?>
                         </div>
                     </div>
                 </div>
