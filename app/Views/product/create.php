@@ -42,7 +42,7 @@
                   <div class="form-group"> 
                     <?php 
                       echo form_label('Category', 'Category');
-                      echo form_dropdown('category_id', $categories, $inputs['category_id'], ['class' => 'form-control']); 
+                      echo form_dropdown('category_id', $categories, $inputs == null ? '' : $inputs['category_id'], ['class' => 'form-control']); 
                     ?>
                   </div>
                   <div class="form-group">
@@ -52,7 +52,7 @@
                         'type'  => 'text',
                         'name'  => 'product_name',
                         'id'    => 'product_name',
-                        'value' => $inputs['product_name'],
+                        'value' => $inputs == null ? '' : $inputs['product_name'],
                         'class' => 'form-control',
                         'placeholder' => 'Product Name'
                       ];
@@ -66,7 +66,7 @@
                         'type'  => 'number',
                         'name'  => 'product_price',
                         'id'    => 'product_price',
-                        'value' => $inputs['product_price'],
+                        'value' => $inputs == null ? '' : $inputs['product_price'],
                         'class' => 'form-control',
                         'placeholder' => '0'
                       ];
@@ -82,7 +82,7 @@
                         'type'  => 'text',
                         'name'  => 'product_sku',
                         'id'    => 'product_sku',
-                        'value' => $inputs['product_sku'],
+                        'value' => $inputs == null ? '' : $inputs['product_sku'],
                         'class' => 'form-control',
                         'placeholder' => 'Product SKU'
                       ];
@@ -92,7 +92,7 @@
                   <div class="form-group">
                     <?php 
                       echo form_label('Status', 'Status');
-                      echo form_dropdown('product_status', ['' => 'Pilih', 'Active' => 'Active', 'Inactive' => 'Inactive'], $inputs['product_status'], ['class' => 'form-control']); 
+                      echo form_dropdown('product_status', ['' => 'Pilih', 'Active' => 'Active', 'Inactive' => 'Inactive'], $inputs == null ? '' : $inputs['product_status'], ['class' => 'form-control']); 
                     ?>
                   </div>
                   <div class="form-group">
@@ -112,7 +112,7 @@
                         'type'  => 'text',
                         'name'  => 'product_description',
                         'id'    => 'product_description',
-                        'value' => $inputs['product_description'],
+                        'value' => $inputs == null ? '' : $inputs['product_description'],
                         'class' => 'form-control',
                         'placeholder' => 'Product Description'
                       ];
