@@ -57,7 +57,7 @@
             'type'  => 'email',
             'name'  => 'email',
             'id'    => 'email',
-            'value' => $inputs['email'],
+            'value' => $inputs == null ? '' : $inputs['email'],
             'class' => 'form-control',
             'placeholder' => 'your_email@domain.com'
           ];
@@ -75,7 +75,7 @@
             'type'  => 'password',
             'name'  => 'password',
             'id'    => 'password',
-            'value' => $inputs['password'],
+            'value' => $inputs == null ? '' : $inputs['password'],
             'class' => 'form-control',
             'placeholder' => 'your password'
           ];
