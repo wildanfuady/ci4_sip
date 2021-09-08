@@ -49,10 +49,10 @@
                             <?php } ?>
 
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hovered">
+                                <table class="table table-bordered table-hover table-stripped">
                                     <thead>
-                                        <tr>
-                                            <th>No</th>
+                                        <tr class="bg-primary">
+                                            <th width="10px">No</th>
                                             <th>Name</th>
                                             <th>Status</th>
                                             <th>Action</th>

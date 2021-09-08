@@ -97,10 +97,10 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hovered">
+                            <table class="table table-bordered table-hover table-stripped">
                                     <thead>
-                                        <tr>
-                                            <th>No</th>
+                                        <tr class="bg-primary">
+                                            <th width="10px">No</th>
                                             <th>Product</th>
                                             <th>Date</th>
                                             <th>Price</th>

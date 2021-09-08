@@ -50,12 +50,11 @@
                                 <?php echo session()->getFlashdata('warning');?>
                             </div>
                             <?php } ?>
-                            <?php echo session()->get('level'); ?>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hovered">
+                                <table class="table table-bordered table-hover table-stripped">
                                     <thead>
-                                        <tr>
-                                            <th>No</th>
+                                        <tr class="bg-primary">
+                                            <th width="10px">No</th>
                                             <th>Product</th>
                                             <th>Date</th>
                                             <th>Price</th>
@@ -68,6 +67,11 @@
                                             <td><?php echo $row['product_name']; ?></td>
                                             <td><?php echo date('d-m-Y', strtotime($row['trx_date'])); ?></td>
                                             <td><?php echo "Rp. ".number_format($row['trx_price']); ?></td>
+                                        </tr>
+                                        <?php } 
+                                        if(count($transactions) == 0){ ?>
+                                        <tr>
+                                            <td class="text-center" colspan="4">Belum ada data transaksi.</td>
                                         </tr>
                                         <?php } ?>
                                     </tbody>

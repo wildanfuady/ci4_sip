@@ -74,9 +74,9 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hovered">
+                            <table class="table table-bordered table-hover table-stripped">
                                     <thead>
-                                        <tr>
+                                        <tr class="bg-primary">
                                             <th width="10px" class="text-center">No</th>
                                             <th>Thumbnail</th>
                                             <th>SKU</th>
